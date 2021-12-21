@@ -1,68 +1,79 @@
-import React from 'react';
-import { Button, Div, Flex, Grid, Img, P, H2, Space } from '../components/hotelsStyle';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import {
+    Button,
+    Div,
+    Flex,
+    Grid,
+    Img,
+    P,
+    H2,
+    Space,
+} from '../components/hotelsStyle';
+import { getHotels } from '../store/hotelSlice';
 
 const Hotels = () => {
+    const state = useSelector(state => state);
+    const dispatch = useDispatch();
+    const params = useParams();
+
+    useEffect(() => {
+        dispatch(getHotels(params.destainationId));
+        console.log(state);
+    }, [params]);
+
     return (
-        <div className='container'>
-            <Space y="50"/>
-        <Grid>
-        <Flex>
-            <Img src="https://picsum.photos/150" alt="" />
-            <div style={{padding: "25px"}}>
-            <H2>White Palace</H2>
-            <Space y="20"/>
-            <P weight="normal" size="12">1749 Wheeler Ridge  Delaware</P>
-            <Space y="10"/>
-            <P weight="normal" size="12">2 x Guests</P>
-            <Space y="10"/>
-            <P weight="normal" size="12">1 x Room</P>
-            <Space y="25"/>
-            <Div>
-                <P weight="bold" size="24">$ 9,500</P>
-                <Button>Book Now</Button>
-            </Div>
-            <Space y="35"/>
+        <div className='background'>
+            <div className="container">
+                <Grid>
+                    <Space y="50" />
+                    {
+                        state.status === 'fulfilled' ? (
+                            state.hotels.searchResults?.results?.map(result => (
+                                <div>
+                                    
+                                <Flex>
+                                    <Space x="20" />
+                                    <Img src="https://picsum.photos/150" alt="" />
+                                    <div style={{ padding: '0 25px' }}>
+                                        <H2>{result.name}</H2>
+                                        <Space y="20" />
+
+                                        <P weight="normal" size="12">
+                                            1749 Wheeler Ridge Delaware
+                                        </P>
+                                        <Space y="10" />
+                                        <P weight="normal" size="12">
+                                            2 x Guests
+                                        </P>
+                                        <Space y="10" />
+                                        <P weight="normal" size="12">
+                                            1 x Room
+                                        </P>
+                                        <Space y="50" />
+                                        <Div>
+                                            <P color="#222" weight="bold" size="24">
+                                                {result.ratePlan?.price?.current}
+                                            </P><P>/night</P>
+
+                                        </Div>
+                                    </div>
+                                </Flex>
+                                <Space y="40" />
+                                <hr style={{color: "rgb(113, 113, 113)"}, {width: "650px"}} />
+                                <Space y="40" />
+                                </div>
+                            ))
+                        ) : null
+                    } 
+                    <Space y="20" />
+                </Grid>
+
+
             </div>
-        </Flex>
-        <Flex>
-            <Img src="https://picsum.photos/150" alt="" />
-            <div style={{padding: "25px"}}>
-            <H2>White Palace</H2>
-            <Space y="20"/>
-            <P weight="normal" size="12">1749 Wheeler Ridge  Delaware</P>
-            <Space y="10"/>
-            <P weight="normal" size="12">2 x Guests</P>
-            <Space y="10"/>
-            <P weight="normal" size="12">1 x Room</P>
-            <Space y="25"/>
-            <Div>
-                <P weight="bold" size="24">$ 9,500</P>
-                <Button>Book Now</Button>
-            </Div>
-            <Space y="35"/>
-            </div>
-        </Flex>
-        <Flex>
-            <Img src="https://picsum.photos/150" alt="" />
-            <div style={{padding: "25px"}}>
-            <H2>White Palace</H2>
-            <Space y="20"/>
-            <P weight="normal" size="12">1749 Wheeler Ridge  Delaware</P>
-            <Space y="10"/>
-            <P weight="normal" size="12">2 x Guests</P>
-            <Space y="10"/>
-            <P weight="normal" size="12">1 x Room</P>
-            <Space y="25"/>
-            <Div>
-                <P weight="bold" size="24">$ 9,500</P>
-                <Button>Book Now</Button>
-            </Div>
-            <Space y="35"/>
-            </div>
-        </Flex>
-        </Grid>
         </div>
-    )
-}
+    );
+};
 
 export default Hotels;

@@ -1,36 +1,34 @@
 import styled from "styled-components";
 
 const Grid = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 30px;
+    display: flex;
+    flex-direction: column;
 `
 
 const Flex = styled.div`
     display: flex;
-    flex-direction: column;
-    max-width: 350px;
-    background: #0A223D;
-    border-radius: 8px;
+    flex-direction: row;
+    min-height: 100px;
 `
 const Img = styled.img`
-    width: 350px;
-    height: 250px;
-    border-radius: 8px 8px 0px 0px;
+    width: 340px;
+    height: 220px;
+    border-radius: 10px;
 `
 const H2 = styled.h2`
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
     line-height: 23px;
-    color: #FFFFFF;
+    color: #222;
 `
 const P = styled.p`
     font-style: normal;
     font-weight: ${props => props.weight};
     font-size: ${props => props.size}px;
     line-height: 15px;
-    color: #FFFFFF;
+    color: rgb(113, 113, 113);
+    color: ${props => props.color};
 `
 const Button = styled.button`
     outline: none;
@@ -45,7 +43,7 @@ const Button = styled.button`
 `
 const Div = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
 `
 const Space = styled.div`

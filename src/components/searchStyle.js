@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const Header = styled.div`
-    background: #fff;
     height: 120px;
     display: flex;
     justify-content: center;
@@ -11,16 +10,18 @@ const DivSearch = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 500px;
+    width: 900px;
     height: 50px;
-    background: #F5FAFE;
-    border-radius: 6px; 
+    background: #f7f7f7;
+    border-radius: 32px; 
+    padding: 15px 10px;  
 `
 const Input = styled.input`
-    background: #F5FAFE;
+    width: 100%;
+    background: #f7f7f7;
     outline: none;
     border: none;
-    padding-left: 25px;
+    padding-left: 15px;
     font-family: Mulish;
     font-style: normal;
     font-weight: normal;
@@ -32,9 +33,18 @@ const ButtonSearch = styled.button`
     width: 65px;
     height: 50px;
     background: #EC1F46;
-    border-radius: 0px 6px 6px 0px;
+    padding: 15px;  
+    border-radius: 50%;
     border: none;
     outline: none;
 `
+const Results = styled.div`
+    display: flex;
+    flex-direction: column;
+    background: #f7f7f7;
+    width: 500px;
+    padding: 20px;
+    border-radius: 32px;
+`
 
-export { Header, DivSearch, Input, ButtonSearch }
+export { Header, DivSearch, Input, ButtonSearch, Results }

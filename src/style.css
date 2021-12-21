@@ -4,12 +4,25 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Mulish;
 }
-body {
-    background: #F5FAFE;
+.body {
+    background: #222222;
+    height: 100vh;
     font-family: Mulish;
 }
 .container {
     max-width: 1250px;
     margin: 0 auto;
+}
+.link {
+    padding: 10px;
+    color: rgb(34, 34, 34);
+    text-decoration: none;
+}
+.background {
+    background-color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
 }

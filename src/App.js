@@ -1,21 +1,22 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import "./style.css";
-import Home from './views/home';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './style.css';
+import Search from './views/search';
 import Hotel from './views/hotel';
 import Hotels from './views/hotels';
 
 const App = () => {
-  return (
-    <BrowserRouter>
-      <Home />
-      <Hotels />
-      {/* <Switch>
-        <Route exact path="/" component={Hotels} />
-        <Route exact path="/hotel" component={Hotel} />
-      </Switch> */}
-    </BrowserRouter>
-  )
-}
+	return (
+		<BrowserRouter>
+			<Routes>
+        <Route exact path="/" element={<div className='body'>
+          <Search />
+        </div>} />
+				<Route exact path="/hotel" element={<Hotel />} />
+				<Route exact path="/hotels/:destainationId" element={<Hotels />} />
+			</Routes>
+		</BrowserRouter>
+	);
+};
 
 export default App;
