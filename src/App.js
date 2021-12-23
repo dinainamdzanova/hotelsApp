@@ -12,7 +12,7 @@ const App = () => {
         <Route exact path="/" element={<div className='body'>
           <Search />
         </div>} />
-				<Route exact path="/hotel" element={<Hotel />} />
+				<Route exact path="/hotel/:hotelId" element={<Hotel />} />
 				<Route exact path="/hotels/:destainationId" element={<Hotels />} />
 			</Routes>
 		</BrowserRouter>

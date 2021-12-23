@@ -46,11 +46,26 @@ export const getHotels = createAsyncThunk("hotels/getHotels", async function(id)
     return res.data;
 });
 
+export const getReviews = createAsyncThunk("reviews/getReviews", async function(hotel_id) {
+  var options = {
+    method: 'GET',
+    url: 'https://hotels-com-provider.p.rapidapi.com/v1/hotels/reviews',
+    params: {locale: 'en_US', hotel_id: hotel_id, page_number: '1'},
+    headers: {
+      'x-rapidapi-host': 'hotels-com-provider.p.rapidapi.com',
+      'x-rapidapi-key': 'ba2fe519e4msh85a360ac6092315p1da1f7jsn126327c4e6d9'
+    }
+  };
+  const res = await axios.request(options)
+  return res.data;
+})
+
 const hotelSlice = createSlice({
     name: 'hotels',
     initialState: {
         hotels: [],
         suggestions: [],
+        reviews: [],
         status: ''
     },
     reducers: {},
@@ -62,6 +77,10 @@ const hotelSlice = createSlice({
         [getHotels.fulfilled]: (state, action) => {
             state.hotels = action.payload
             state.status = 'fulfilled' 
+        },
+        [getReviews.fulfilled]: (state, action) => {
+          state.reviews = action.payload
+          state.status = 'fulfilled'
         }
     }
 })

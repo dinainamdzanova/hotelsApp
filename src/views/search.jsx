@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
@@ -6,7 +6,7 @@ import {
 	DivSearch,
 	Header,
 	Input,
-    Results,
+	Results,
 } from '../components/searchStyle';
 import { getSuggestions } from '../store/hotelSlice';
 import search from './icons8-search-24.png';
@@ -20,52 +20,48 @@ const Search = () => {
 		dispatch(getSuggestions(query));
 	};
 	return (
-        <>
-		<Header>
-			<DivSearch>
-				<Input
-					onChange={e => setQuery(e.target.value)}
-					type="text"
-					placeholder="search location"
-				/>
-                <Input
-					onChange={e => setQuery(e.target.value)}
-					type="text"
-					placeholder="check in"
-				/>
-                <Input
-					onChange={e => setQuery(e.target.value)}
-					type="text"
-					placeholder="check out"
-				/>
-                <Input
-					onChange={e => setQuery(e.target.value)}
-					type="text"
-					placeholder="guests"
-				/>
+		<>
+			<Header>
+				<DivSearch>
+					<Input
+						onChange={e => setQuery(e.target.value)}
+						type="text"
+						placeholder="search location"
+					/>
+					<Input
+						onChange={e => setQuery(e.target.value)}
+						type="text"
+						placeholder="check in"
+					/>
+					<Input
+						onChange={e => setQuery(e.target.value)}
+						type="text"
+						placeholder="check out"
+					/>
+					<Input
+						onChange={e => setQuery(e.target.value)}
+						type="text"
+						placeholder="guests"
+					/>
+					<ButtonSearch onClick={searchHotel}>
+						<img src={search} alt="" />
+					</ButtonSearch>
 
-				<ButtonSearch onClick={searchHotel}>
-					<img src={search} alt="" />
-				</ButtonSearch>
-                
-			</DivSearch>
-		</Header>
-        
-             <Results className='container'>
+				</DivSearch>
+			</Header>
+
 			{state.status === 'fulfilled'
-				? state.suggestions?.suggestions[0]?.entities?.map(suggestion => {
+				? <Results className='container'>
+					{state.suggestions?.suggestions[0]?.entities?.map(suggestion => {
 						return (
-							
-                                <Link className='link' to={'/hotels/' + suggestion.destinationId}>
+							<Link className='link' to={'/hotels/' + suggestion.destinationId}>
 								<div dangerouslySetInnerHTML={{ __html: suggestion.name }} />
-							    </Link>
-                            
+							</Link>
 						);
-				  })
+					})}
+				</Results>
 				: null}
-                </Results>
-        
-                </>
+		</>
 	);
 };
 

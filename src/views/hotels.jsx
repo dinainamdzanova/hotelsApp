@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {
-    Button,
     Div,
     Flex,
     Grid,
@@ -30,47 +29,44 @@ const Hotels = () => {
                     <Space y="50" />
                     {
                         state.status === 'fulfilled' ? (
-                            state.hotels.searchResults?.results?.map(result => (
+                            state.hotels.searchResults?.results?.map((result, key="id") => (
                                 <div>
-                                    
-                                <Flex>
-                                    <Space x="20" />
-                                    <Img src="https://picsum.photos/150" alt="" />
-                                    <div style={{ padding: '0 25px' }}>
-                                        <H2>{result.name}</H2>
-                                        <Space y="20" />
-
-                                        <P weight="normal" size="12">
-                                            1749 Wheeler Ridge Delaware
-                                        </P>
-                                        <Space y="10" />
-                                        <P weight="normal" size="12">
-                                            2 x Guests
-                                        </P>
-                                        <Space y="10" />
-                                        <P weight="normal" size="12">
-                                            1 x Room
-                                        </P>
-                                        <Space y="50" />
-                                        <Div>
-                                            <P color="#222" weight="bold" size="24">
-                                                {result.ratePlan?.price?.current}
-                                            </P><P>/night</P>
-
-                                        </Div>
-                                    </div>
-                                </Flex>
-                                <Space y="40" />
-                                <hr style={{color: "rgb(113, 113, 113)"}, {width: "650px"}} />
-                                <Space y="40" />
+                                    <Link to={"/hotel/" + result.id}>
+                                        <Flex>
+                                            <Space x="20" />
+                                            <Img src="https://picsum.photos/150" alt="" />
+                                            <div style={{ padding: '0 25px' }}>
+                                                <H2>{result.name}</H2>
+                                                <Space y="20" />
+                                                <P weight="normal" size="12">
+                                                    1749 Wheeler Ridge Delaware
+                                                </P>
+                                                <Space y="10" />
+                                                <P weight="normal" size="12">
+                                                    2 x Guests
+                                                </P>
+                                                <Space y="10" />
+                                                <P weight="normal" size="12">
+                                                    1 x Room
+                                                </P>
+                                                <Space y="50" />
+                                                <Div>
+                                                    <P color="#222" weight="bold" size="24">
+                                                        {result.ratePlan?.price?.current}
+                                                    </P><P>/night</P>
+                                                </Div>
+                                            </div>
+                                        </Flex>
+                                    </Link>
+                                    <Space y="40" />
+                                    <hr style={{ color: "rgb(113, 113, 113)" }, { width: "650px" }} />
+                                    <Space y="40" />
                                 </div>
                             ))
                         ) : null
-                    } 
+                    }
                     <Space y="20" />
                 </Grid>
-
-
             </div>
         </div>
     );
