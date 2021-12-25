@@ -10,7 +10,7 @@ import {
     H2,
     Space,
 } from '../components/hotelsStyle';
-import { getHotels } from '../store/hotelSlice';
+import { getHotels, getImages } from '../store/hotelSlice';
 
 const Hotels = () => {
     const state = useSelector(state => state);
@@ -22,6 +22,10 @@ const Hotels = () => {
         console.log(state);
     }, [params]);
 
+    useEffect(() => {
+        dispatch(getImages(params.hotelId))
+    }, [params])
+
     return (
         <div className='background'>
             <div className="container">
@@ -29,12 +33,13 @@ const Hotels = () => {
                     <Space y="50" />
                     {
                         state.status === 'fulfilled' ? (
-                            state.hotels.searchResults?.results?.map((result, key="id") => (
+                            state.hotels.searchResults?.results?.map((result) => (
                                 <div>
                                     <Link to={"/hotel/" + result.id}>
                                         <Flex>
                                             <Space x="20" />
-                                            <Img src="https://picsum.photos/150" alt="" />
+                                            <Img src="https://picsum.photos/150" />
+                                           {/* <Img src={state.images[0]?.mainUrl} />  */}
                                             <div style={{ padding: '0 25px' }}>
                                                 <H2>{result.name}</H2>
                                                 <Space y="20" />

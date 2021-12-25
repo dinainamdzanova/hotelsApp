@@ -13,8 +13,8 @@ const Content = styled.div`
   grid-gap: 30px;
 `
 const ContentImg = styled.img`
-    width: 728px;
-    height: 500px;
+    width: 100px;
+    height: 150px;
   border-radius: 8px;
 `
 const ContentDiv = styled.div`
