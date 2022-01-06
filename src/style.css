@@ -26,3 +26,15 @@
     display: flex;
     justify-content: center;
 }
+.starDiv {
+    display: flex;
+    align-items: center;
+}
+.linkBack {
+    color: #222222;
+    text-decoration: none;
+}
+.linkBack:hover {
+    transition: .4s ease;
+    color: #FF385C;
+}

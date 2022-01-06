@@ -43,24 +43,24 @@ const Search = () => {
 						type="text"
 						placeholder="guests"
 					/>
+
 					<ButtonSearch onClick={searchHotel}>
 						<img src={search} alt="" />
 					</ButtonSearch>
-
 				</DivSearch>
 			</Header>
 
-			{state.status === 'fulfilled'
-				? <Results className='container'>
+			{state.status.post === 'fulfilled' ? (
+				<Results className="container">
 					{state.suggestions?.suggestions[0]?.entities?.map(suggestion => {
 						return (
-							<Link className='link' to={'/hotels/' + suggestion.destinationId}>
+							<Link className="link" to={'/hotels/' + suggestion.destinationId}>
 								<div dangerouslySetInnerHTML={{ __html: suggestion.name }} />
 							</Link>
 						);
 					})}
 				</Results>
-				: null}
+			) : null}
 		</>
 	);
 };
